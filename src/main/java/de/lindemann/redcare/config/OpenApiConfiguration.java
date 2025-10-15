@@ -29,7 +29,9 @@ public class OpenApiConfiguration {
                 .description("""
                         Backend application for scoring repositories on GitHub.
                         
-                        The scoring Algorithm uses stars, forks, recency of updates.
+                        The scoring algorithm uses stars, forks, recency of updates.
+                        
+                        The GitHub-API-response is limited to 1000 entries.
                         """)
                 .contact(myContact);
         return new OpenAPI().info(information).servers(List.of(server));

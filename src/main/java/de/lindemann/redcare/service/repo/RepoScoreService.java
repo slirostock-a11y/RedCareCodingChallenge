@@ -1,4 +1,4 @@
-package de.lindemann.redcare.service;
+package de.lindemann.redcare.service.repo;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +12,7 @@ import java.time.ZoneOffset;
 
 @Service
 @RequiredArgsConstructor
-public class GitHubScoreService {
+public class RepoScoreService {
 
     public Integer calcScore(@NotNull Instant createdAt,
                              @NotNull Instant updatedAt,

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RedCareApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RedCareApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RedCareApplication.class, args);
+    }
 
 }

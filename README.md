@@ -1,2 +1,2 @@
-# RedCareApplication
+# RedCare CodingChallenge
 GitHubScoring

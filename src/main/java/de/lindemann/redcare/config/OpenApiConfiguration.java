@@ -27,11 +27,29 @@ public class OpenApiConfiguration {
                 .title("RedCare CodingChallenge API")
                 .version("v1")
                 .description("""
-                        Backend application for scoring repositories on GitHub.
+                        Backend application for searching and scoring GitHub repositories.
                         
-                        The scoring algorithm uses stars, forks, recency of updates.
+                        This service allows users to search public GitHub repositories with advanced filters, including programming language, creation date, and sorting options.\s
+                        It computes a custom score for each repository based on:
                         
-                        The GitHub-API-response is limited to 1000 entries.
+                        - Recency of updates (hotness)
+                        - Continuous activity over time (steady contributions)
+                        - Number of forks (logarithmic scale)
+                        - Number of stars (logarithmic scale)
+                        
+                        The GitHub API search results are limited to 1000 repositories per query.\s
+                        To overcome rate limits, users can optionally provide their own GitHub Personal Access Token (PAT) via the `X-GitHub-Token` request header.\s
+                        If no token is provided, the server uses its default token.
+                        
+                        Additional features:
+                        
+                        - Filtering by minimum computed score
+                        - Limiting the number of returned repositories
+                        - Sorting by stars, forks, help-wanted-issues, or updated timestamp
+                        - Automatic pagination handling to fetch all available results up to the GitHub API limit
+                        
+                        All responses include repository details along with the computed score.\s
+                        This allows clients to retrieve the most relevant and active repositories efficiently.
                         """)
                 .contact(myContact);
         return new OpenAPI().info(information).servers(List.of(server));

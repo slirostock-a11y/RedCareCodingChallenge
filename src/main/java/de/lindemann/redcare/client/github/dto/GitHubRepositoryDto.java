@@ -1,4 +1,4 @@
-package de.lindemann.redcare.client.github;
+package de.lindemann.redcare.client.github.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.Instant;
 @Data
 public class GitHubRepositoryDto {
 
-    private Integer id;
+    private Long id;
 
     private String fullName;
 

@@ -1,4 +1,4 @@
-package de.lindemann.redcare.client.github;
+package de.lindemann.redcare.client.github.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package de.lindemann.redcare.controller.repo;
+package de.lindemann.redcare.controller.repo.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

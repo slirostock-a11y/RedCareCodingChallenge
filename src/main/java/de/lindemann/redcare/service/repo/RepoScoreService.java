@@ -1,7 +1,5 @@
 package de.lindemann.redcare.service.repo;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +12,18 @@ import java.time.ZoneOffset;
 @RequiredArgsConstructor
 public class RepoScoreService {
 
-    public Integer calcScore(@NotNull Instant createdAt,
-                             @NotNull Instant updatedAt,
-                             @NotNull @Min(0) Integer forksCount,
-                             @NotNull @Min(0) Integer stargazersCount) {
+    public Integer calcScore(Instant createdAt,
+                             Instant updatedAt,
+                             Integer forksCount,
+                             Integer stargazersCount) {
 
-        int hotPoints = Math.max(0, 30 - (int) Duration.between(Instant.now(), updatedAt).toDays());
+        if (createdAt == null) throw new IllegalArgumentException("createdAt must not be null");
+        if (updatedAt == null) throw new IllegalArgumentException("updatedAt must not be null");
+        if (forksCount == null || forksCount < 0) throw new IllegalArgumentException("forksCount must be >= 0");
+        if (stargazersCount == null || stargazersCount < 0)
+            throw new IllegalArgumentException("stargazersCount must be >= 0");
+
+        int hotPoints = Math.max(0, 30 - (int) Duration.between(updatedAt, Instant.now()).toDays());
 
         int workingMonths = (int) Period.between(
                 createdAt.atZone(ZoneOffset.UTC).toLocalDate(),
@@ -34,4 +38,5 @@ public class RepoScoreService {
 
         return hotPoints + steadyPoints + forkPoints + starsPoints;
     }
+
 }

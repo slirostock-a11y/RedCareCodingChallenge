@@ -90,7 +90,8 @@ public class RepoSearchService {
         Stream<SearchRepositoryResponse> stream = repoList.stream()
                 .filter(repo -> minimumScore == null
                         || repo.getScore() >= minimumScore)
-                .sorted(Comparator.comparingInt(SearchRepositoryResponse::getScore).reversed());
+                .sorted(Comparator.comparingInt(SearchRepositoryResponse::getScore).reversed())
+                .distinct();
 
         if (limit != null) {
             stream = stream.limit(limit);

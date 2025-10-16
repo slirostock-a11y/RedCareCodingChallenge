@@ -1,5 +1,8 @@
 package de.lindemann.redcare.client.github;
 
+import lombok.Getter;
+
+@Getter
 public enum GitHubSortBy {
     STARS("stars"),
     FORKS("forks"),
@@ -12,7 +15,4 @@ public enum GitHubSortBy {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

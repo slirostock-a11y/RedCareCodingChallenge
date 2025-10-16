@@ -5,7 +5,6 @@ import de.lindemann.redcare.controller.repo.dto.SearchRequest;
 import de.lindemann.redcare.controller.repo.dto.SearchResponse;
 import de.lindemann.redcare.service.repo.RepoLanguageService;
 import de.lindemann.redcare.service.repo.RepoSearchService;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

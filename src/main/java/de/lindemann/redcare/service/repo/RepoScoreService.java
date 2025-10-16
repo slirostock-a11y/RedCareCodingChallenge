@@ -32,7 +32,7 @@ public class RepoScoreService {
                 updatedAt.atZone(ZoneOffset.UTC).toLocalDate(),
                 Instant.now().atZone(ZoneOffset.UTC).toLocalDate()).toTotalMonths();
 
-        int steadyPoints = Math.max(0, workingMonths - sleepingMonths);
+        int steadyPoints = Math.max(0, workingMonths - 2 * sleepingMonths);
         int forkPoints = (int) (3 * Math.log1p(forksCount)); // logarithmic scale
         int starsPoints = (int) (5 * Math.log1p(stargazersCount));
 

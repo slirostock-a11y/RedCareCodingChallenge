@@ -11,7 +11,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
-import java.beans.Transient;
 import java.time.LocalDate;
 
 @Data

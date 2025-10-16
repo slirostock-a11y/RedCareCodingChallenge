@@ -1,10 +1,6 @@
 package de.lindemann.redcare.client.github;
 
 import de.lindemann.redcare.client.github.dto.GitHubSearchDto;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +12,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 @Service
 public class GitHubApiClient {
@@ -42,22 +40,14 @@ public class GitHubApiClient {
             String personalToken) {
 
         return webClient.get()
-                .uri(uriBuilder -> {
-                    UriBuilder builder = uriBuilder
-                            .path("/search/repositories")
-                            .queryParam("q", query)
-                            .queryParam("per_page", pageSize)
-                            .queryParam("page", page);
-
-                    if (sortBy != null) {
-                        builder.queryParam("sort", sortBy.getValue());
-                    }
-                    if (sortOrder != null) {
-                        builder.queryParam("order", sortOrder.getValue());
-                    }
-
-                    return builder.build();
-                })
+                .uri(uriBuilder -> uriBuilder
+                        .path("/search/repositories")
+                        .queryParam("q", query)
+                        .queryParam("per_page", pageSize)
+                        .queryParam("page", page)
+                        .queryParamIfPresent("sort", Optional.ofNullable(sortBy).map(GitHubSortBy::getValue))
+                        .queryParamIfPresent("order", Optional.ofNullable(sortOrder).map(GitHubSortOrder::getValue))
+                        .build())
                 .headers(headers -> {
                     if (StringUtils.isNotBlank(personalToken)) {
                         // Override Authorization only for this request

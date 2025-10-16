@@ -1,5 +1,8 @@
 package de.lindemann.redcare.client.github;
 
+import lombok.Getter;
+
+@Getter
 public enum GitHubSortOrder {
     ASC("asc"),
     DESC("desc");
@@ -10,7 +13,4 @@ public enum GitHubSortOrder {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

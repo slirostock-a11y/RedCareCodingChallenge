@@ -84,6 +84,30 @@ Returns a list of repositories with metadata and computed score.
 
 ---
 
+### 🔹 Languages
+
+```
+GET /api/repository/languages
+```
+
+Retrieves the list of programming languages supported by GitHub Linguist. This allows clients to see which languages can be used when filtering repositories.
+
+#### Response:
+Returns a JSON object containing a list of language names.
+
+```json
+{
+  "languages": ["Java", "Python", "C#"]
+}
+```
+
+#### Notes:
+
+* The list of languages is cached for 3 hours to reduce GitHub API calls.
+* The list is fetched from the official GitHub Linguist repository.
+
+---
+
 ## 📊 Scoring Algorithm
 
 The score is calculated using the following logic:
